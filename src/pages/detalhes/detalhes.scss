@@ -1,0 +1,38 @@
+     .card-title {
+         position: absolute;
+         top: 10%;
+         left: 5%;
+         font-weight: bold;
+         color: #fff;
+         font-size: 1.5em;
+     }
+     
+     .card-subtitle {
+         font-size: 0.8em;
+         position: absolute;
+         top: 20%;
+         left: 5%;
+         color: #fff;
+     }
+     
+     .niceImage {
+         width: 100%;
+         object-fit: cover;
+         object-position: center;
+         background: rgba(black, 0.5);
+         opacity: 0.9;
+         filter: brightness(20%);
+     }
+     
+     ul {
+         padding: 0px;
+         text-align: center;
+         &.rating li {
+             padding: 5px 10px;
+             background: none;
+             color: #ffb400;
+             ion-icon {
+                 font-size: 30px;
+             }
+         }
+     }

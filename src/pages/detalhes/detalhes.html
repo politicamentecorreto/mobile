@@ -1,0 +1,106 @@
+<ion-header>
+    <ion-navbar no-border-bottom color="primary">
+        <ion-title>
+            {{politico.nome}}
+        </ion-title>
+
+    </ion-navbar>
+    <ion-toolbar no-border-top color="primary">
+        <ion-segment [(ngModel)]="aba" color="light">
+            <ion-segment-button value="visaoGeral">
+                Visão Geral
+            </ion-segment-button>
+            <ion-segment-button value="historico">
+                Histórico
+            </ion-segment-button>
+            <ion-segment-button value="processos">
+                Processos
+            </ion-segment-button>
+            <ion-segment-button value="projetos">
+                Projetos
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div [ngSwitch]="aba" (swipeRight)="right()" (swipeLeft)="left()" style="height: 100%;">
+        <ion-list *ngSwitchCase="'visaoGeral'">
+            <img src="{{politico.fotoCapa}}" class="niceImage" />
+            <div class="card-title">{{politico.nome}}</div>
+            <div class="card-subtitle">{{politico.cargo}}</div>
+            <ion-item>
+                <rating [(ngModel)]="rate"></rating>
+            </ion-item>
+            <ion-item>
+                <ion-row>
+                    <ion-col>
+                        <div style="text-align: center;">
+                            <img src="{{politico.partidofoto}}" width="30px" /><br/>
+                            <div>{{politico.partido}}</div>
+                        </div>
+                    </ion-col>
+                    <ion-col>
+                        <div style="text-align: center;">
+                            <img src="./assets/elementos/cargo.png" width="30px" /><br/>
+                            <div>{{politico.cargo}}</div>
+                        </div>
+                    </ion-col>
+                    <ion-col center text-center>
+                        <div style="text-align: center;">
+                            <img src="./assets/elementos/urna.png" width="30px" /><br/>
+                            <div>{{politico.numero}}</div>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-item>
+        </ion-list>
+        <ion-list *ngSwitchCase="'historico'">
+            <ion-item>
+                <ion-thumbnail item-left>
+                    <img src="assets/img/thumbnail-kitten-1.jpg">
+                </ion-thumbnail>
+                <h2>Luna</h2>
+            </ion-item>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'processos'">
+            <ion-card *ngFor="let pro of proces">
+                <ion-card-header>
+                    {{pro.titulo}}
+                </ion-card-header>
+                <ion-card-content>
+                    {{pro.descricao}}
+                </ion-card-content>
+                <ion-row no-padding>
+                    <ion-col text-right>
+                        <button ion-button clear small icon-left>
+                        <ion-icon name="eye"></ion-icon>
+                        Ver Mais
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'projetos'">
+            <ion-card *ngFor="let projeto of projetos">
+                <ion-card-header>
+                    {{projeto.titulo}}
+                </ion-card-header>
+                <ion-card-content>
+                    {{projeto.descricao}}
+                </ion-card-content>
+                <ion-row no-padding>
+                    <ion-col text-right>
+                        <button ion-button clear small icon-left>
+                        <ion-icon name="eye"></ion-icon>
+                        Ver Mais
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+        </ion-list>
+
+    </div>
+</ion-content>

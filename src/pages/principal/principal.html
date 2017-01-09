@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+      <ion-icon  name="menu"></ion-icon>
+    </button>
+        <ion-searchbar [showCancelButton]="true" placeholder="Buscar Politicos" (input)="buscar($event)" (ionCancel)="cancelar($event)" (ionClear)="clear($event)">
+        </ion-searchbar>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-slides [options]="slideOpcoes" style="height: 200px;" [hidden]="filtro">
+        <ion-slide>
+            <img src="assets/elementos/logo-senai.jpg ">
+        </ion-slide>
+        <ion-slide>
+            <img src="assets/elementos/logo_endeavor.png ">
+        </ion-slide>
+    </ion-slides>
+    <h1 style="padding-left:20px;" [hidden]="filtro">Os mais populares</h1>
+    <ion-scroll scrollX=" true " [hidden]="filtro">
+        <ion-card *ngFor="let politico of polis " style="width:140px;height:230px;display: inline-block" (click)="openPage(politico)">
+            <ion-card-header style="height:150px; ">
+                <img src="{{politico.foto}} " width="100% ">
+            </ion-card-header>
+            <ion-card-content>
+                <p style="width: 100%;padding-top: 5px; ">{{politico.apelido}}</p>
+                <img src="{{politico.partidofoto}}" style="width: 30px;">
+                <p>{{politico.partido}}</p>
+            </ion-card-content>
+        </ion-card>
+    </ion-scroll>
+
+    <h1 style="padding-left:20px; " [hidden]="filtro">Os que você acompanha</h1>
+    <ion-scroll scrollX="true " [hidden]="filtro">
+        <ion-card *ngFor="let politico of polis " (click)="openPage(politico)" style="width:140px;height:230px;display: inline-block ">
+            <ion-card-header style="height:150px; ">
+                <img src="{{politico.foto}} " width="100px ">
+            </ion-card-header>
+            <ion-card-content>
+                <p style="width: 100%;padding-top: 5px; ">{{politico.apelido}}</p>
+                <img src="{{politico.partidofoto}}" style="width: 30px;">
+                <p>{{politico.partido}}</p>
+            </ion-card-content>
+        </ion-card>
+    </ion-scroll>
+
+    <ion-list [hidden]="!filtro">
+        <ion-item *ngFor="let politico of busca" (click)="openPage(politico)">
+            <img src="{{politico.foto}} " width="100px " item-left>
+            <h2>{{politico.apelido}}</h2>
+            <img src="{{politico.partidofoto}}" style="width: 30px;">
+            <p>{{politico.partido}}</p>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
